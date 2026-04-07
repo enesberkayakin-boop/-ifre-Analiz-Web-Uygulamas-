@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Şifre Analiz Aracı</title>
+    <!-- Stil dosyamızı (style.css) ekliyoruz -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Modern ve okunabilir bir font olan Google Fonts'tan Inter fontunu ekliyoruz -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Geniş Dashboard Görünümü -->
+        <div class="glass-board">
+            
+            <div class="board-header">
+                <h1>Şifre Analiz & Güvenlik Aracı</h1>
+                <p class="subtitle">Şifrelerinizin gücünü anlık olarak ölçün ve internet sızıntılarına karşı güvenle denetleyin.</p>
+            </div>
+
+            <div class="board-grid">
+                
+                <!-- Sol Kolon: Analiz ve Kriterler -->
+                <div class="grid-col">
+                    <div class="section-title">Şifre Testi</div>
+                    <div class="input-group">
+                        <input type="password" id="passwordInput" placeholder="Şifrenizi buraya girin..." autofocus>
+                        
+                        <div class="input-actions">
+                            <button type="button" id="copyPassword" class="icon-btn" aria-label="Şifreyi kopyala" title="Şifreyi Kopyala">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                </svg>
+                            </button>
+                            <button type="button" id="togglePassword" class="icon-btn" aria-label="Şifreyi göster/gizle" title="Göster/Gizle">
+                                <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="strength-meter">
+                        <div class="bar-container">
+                            <div class="bar" id="strengthBar"></div>
+                        </div>
+                        <div class="strength-info">
+                            <div class="crack-time" id="crackTime">Tahmini Kırılma Süresi: Bekleniyor</div>
+                            <div class="strength-text" id="strengthText">Şifre bekleniyor...</div>
+                        </div>
+                    </div>
+
+                    <div class="criteria-list">
+                        <div class="criterion" id="lengthCriteria">
+                            <span class="icon">✖</span> En az 12 karakter uzunluk
+                        </div>
+                        <div class="criterion" id="caseCriteria">
+                            <span class="icon">✖</span> En az bir büyük ve küçük harf
+                        </div>
+                        <div class="criterion" id="numberCriteria">
+                            <span class="icon">✖</span> En az bir rakam
+                        </div>
+                        <div class="criterion" id="specialCriteria">
+                            <span class="icon">✖</span> En az bir özel karakter (!, @, # vb.)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sağ Kolon: Veri İhlali ve Öneriler -->
+                <div class="grid-col right-col">
+                    
+                    <!-- Veri İhlali Bölümü -->
+                    <div class="breach-box">
+                        <div class="section-title">Şifre Veri İhlali Kontrolü</div>
+                        <p class="desc">Aynı şifrenin daha önce veri sızıntılarında açığa çıkıp çıkmadığını kontrol edin. Bu işlem gizliliğinizi koruyarak gerçekleştirilir.</p>
+                        
+                        <button type="button" id="checkBreachBtn" class="primary-btn">Şifreni Kontrol Et</button>
+                        <div id="breachResult" class="breach-result" style="display: none;"></div>
+                        
+                        <div class="attribution">
+                            * <a href="https://haveibeenpwned.com/" target="_blank">Have I Been Pwned</a> veritabanı ile desteklenmektedir.
+                        </div>
+                    </div>
+
+                    <!-- Öneriler Bölümü -->
+                    <div class="suggestions-container" id="suggestionsContainer" style="display: none;">
+                        <div class="section-title">Güçlü Şifre Önerileri</div>
+                        <p class="desc">Kopyalamak için üzerlerine tıklayın.</p>
+                        <div class="suggestions-list" id="suggestionsList">
+                            <!-- JavaScript ile doldurulacak -->
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bildirim (Toast) Mesajı Elementi -->
+    <div id="toast" class="toast">Kopyalandı! ✔</div>
+
+    <!-- JavaScript dosyamızı sayfanın en altında ekliyoruz -->
+    <script src="script.js"></script>
+</body>
+</html>
